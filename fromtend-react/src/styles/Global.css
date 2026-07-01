@@ -1,0 +1,88 @@
+/* ========== GLOBAL STYLES ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #e63946;
+  --red-dark: #c1121f;
+  --orange: #f4a261;
+  --purple: #8338ec;
+  --teal: #2a9d8f;
+  --crimson: #c1121f;
+  --amber: #f3722c;
+  --bg: #f8f9fb;
+  --surface: #ffffff;
+  --border: #e8ecf0;
+  --text: #1a1d23;
+  --text-muted: #6b7280;
+  --sidebar-w: 230px;
+  --sidebar-collapsed: 64px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --radius: 10px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+/* ===== Loading ===== */
+.page-loading {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 300px; gap: 16px;
+  color: var(--text-muted);
+}
+.loading-pulse {
+  font-size: 2.5rem;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.7; }
+}
+
+/* ===== Error Banner ===== */
+.api-error {
+  background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;
+  padding: 12px 16px; border-radius: var(--radius); margin-bottom: 20px;
+  font-size: 13px;
+}
+
+/* ===== Badges ===== */
+.badge { padding: 2px 8px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.red { background: #fee2e2; color: #dc2626; }
+.badge.purple { background: #ede9fe; color: #7c3aed; }
+
+.ml-badge { background: #f0fdf4; color: #16a34a; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+
+/* ===== Blood group badges ===== */
+.blood-badge {
+  padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  display: inline-block;
+}
+.bg-Ap  { background: #fee2e2; color: #b91c1c; }
+.bg-Am  { background: #fca5a5; color: #7f1d1d; }
+.bg-Bp  { background: #fef3c7; color: #b45309; }
+.bg-Bm  { background: #fde68a; color: #92400e; }
+.bg-ABp { background: #ede9fe; color: #6d28d9; }
+.bg-ABm { background: #ddd6fe; color: #4c1d95; }
+.bg-Op  { background: #d1fae5; color: #065f46; }
+.bg-Om  { background: #a7f3d0; color: #064e3b; }
+
+/* ===== No data row ===== */
+.no-data {
+  text-align: center; padding: 40px; color: var(--text-muted); font-size: 13px;
+}
+
+/* Print */
+@media print {
+  .sidebar, .sidebar-toggle, .btn-print, .page-header button { display: none !important; }
+  .main-content { margin-left: 0 !important; }
+}

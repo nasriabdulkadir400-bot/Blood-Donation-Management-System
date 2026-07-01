@@ -1,0 +1,81 @@
+create database blood_donation_management_db;
+use blood_donation_management_db;
+
+CREATE TABLE Donor (
+    DonorID INT PRIMARY KEY IDENTITY(1,1),
+    FullName VARCHAR(100) NOT NULL,
+    Gender VARCHAR(10),
+    BloodGroup VARCHAR(5) NOT NULL,
+    Phone VARCHAR(20),
+    Address VARCHAR(150)
+);
+
+CREATE TABLE BloodDonation (
+    DonationID INT PRIMARY KEY IDENTITY(1,1),
+    DonorID INT NOT NULL,
+    DonationDate DATE NOT NULL,
+    QuantityML INT NOT NULL,
+    
+    CONSTRAINT FK_BloodDonation_Donor
+    FOREIGN KEY (DonorID)
+    REFERENCES Donor(DonorID)
+);
+
+CREATE TABLE Recipient (
+    RecipientID INT PRIMARY KEY IDENTITY(1,1),
+    FullName VARCHAR(100) NOT NULL,
+    BloodGroup VARCHAR(5) NOT NULL,
+    Phone VARCHAR(20),
+    HospitalName VARCHAR(100)
+);
+
+CREATE TABLE BloodRequest (
+    RequestID INT PRIMARY KEY IDENTITY(1,1),
+    RecipientID INT NOT NULL,
+    BloodGroup VARCHAR(5) NOT NULL,
+    QuantityML INT NOT NULL,
+    RequestDate DATE NOT NULL,
+
+    CONSTRAINT FK_BloodRequest_Recipient
+    FOREIGN KEY (RecipientID)
+    REFERENCES Recipient(RecipientID)
+);
+
+
+INSERT INTO Donor
+(FullName, Gender, BloodGroup, Phone, Address)
+VALUES
+('Ahmed Ali', 'Male', 'A+', '0612345678', 'Mogadishu'),
+('Hodan Omar', 'Female', 'O+', '0611122233', 'Mogadishu'),
+('Abdi Hassan', 'Male', 'B+', '0619988776', 'Mogadishu');
+
+
+INSERT INTO BloodDonation
+(DonorID, DonationDate, QuantityML)
+VALUES
+(1, '2026-06-01', 450),
+(2, '2026-06-05', 500),
+(3, '2026-06-10', 450);
+
+
+INSERT INTO Recipient
+(FullName, BloodGroup, Phone, HospitalName)
+VALUES
+('Maryan Ahmed', 'A+', '0615566778', 'Banadir Hospital'),
+('Nasri abdulkadir', 'O+', '0614909342', 'Digfeer Hospital'),
+('Najmo abdulkadir', 'O+', '0614909343', 'Digfeer Hospital');
+
+
+INSERT INTO BloodRequest
+(RecipientID, BloodGroup, QuantityML, RequestDate)
+VALUES
+(1, 'A+', 450, '2026-06-15'),
+(2, 'O+', 500, '2026-06-16'),
+(3, 'B+', 500, '2026-06-13');
+
+select * from Donor
+select * from Recipient
+select * from BloodRequest
+select * from BloodDonation
+
+
